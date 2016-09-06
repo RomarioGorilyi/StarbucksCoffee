@@ -2,6 +2,8 @@ package main.java.ua.ipt.decorators;
 
 import main.java.ua.ipt.component.Beverage;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Roman Horilyi on 04.09.2016.
  */
@@ -20,11 +22,12 @@ public class Whip extends CondimentDecorator {
 
     @Override
     public double cost() {
+        double result = 0;
         switch (getSize()) {
-            case "small":   return .5 + beverage.cost();
-            case "medium":  return .10 + beverage.cost();
-            case "large":   return .13 + beverage.cost();
-            default:        return .10 + beverage.cost();
+            case "small":   result = .05 + beverage.cost();
+            case "medium":  result = .10 + beverage.cost();
+            case "large":   result = .13 + beverage.cost();
         }
+        return round(result, 2);
     }
 }
