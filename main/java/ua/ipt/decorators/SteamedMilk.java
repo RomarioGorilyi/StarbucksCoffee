@@ -7,10 +7,11 @@ import main.java.ua.ipt.component.Beverage;
  * Created by Roman Horilyi on 04.09.2016.
  */
 public class SteamedMilk extends CondimentDecorator {
-    Beverage beverage;
+    private Beverage beverage;
 
     public SteamedMilk(Beverage beverage) {
         this.beverage = beverage;
+        setSize(beverage.getSize());
     }
 
     @Override
@@ -20,6 +21,11 @@ public class SteamedMilk extends CondimentDecorator {
 
     @Override
     public double cost() {
-        return .10 + beverage.cost();
+        switch (getSize()) {
+            case "small":   return .5 + beverage.cost();
+            case "medium":  return .10 + beverage.cost();
+            case "large":   return .15 + beverage.cost();
+            default:        return .10 + beverage.cost();
+        }
     }
 }
